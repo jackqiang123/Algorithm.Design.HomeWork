@@ -1,17 +1,25 @@
-class Solution{
-	public static long findInversion(int []nums){
+/**
+ * HW1
+ * Divide and conquer
+ * find inversion pair is a typical interview question
+ * Achieve O(nlogn)
+ * @author lianlu
+ *
+ */
+class findInversion{
+	public long findInversion(int []nums){
 		if (nums.length <= 1) return 0;
 		return findInversion(nums,0,nums.length-1);		
 	}
 
-	private static long findInversion(int []nums, int lo, int hi)
+	private long findInversion(int []nums, int lo, int hi)
 	{
 		if (lo >= hi) return 0;
 		int mid = (lo + hi)/2;
 		return findInversion(nums, lo, mid) + findInversion(nums, mid + 1, hi) + quickCombine(nums, lo, hi, mid);
 	}
 
-	private static long quickCombine(int []nums, int lo, int hi, int mid){
+	private long quickCombine(int []nums, int lo, int hi, int mid){
 		long res = 0;
 		int temp[] = new int[hi - lo + 1];
 		int i = lo; 
